@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>➕ Add Student</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter student name" required>
+
+    <label>Roll Number</label>
+    <input type="text" name="roll_no" placeholder="Enter roll number" required>
+
+    <label>Department</label>
+    <input type="text" name="department" placeholder="Enter department" required>
+
+    <label>Age</label>
+    <input type="number" name="age" placeholder="Enter age" required>
+
+    <label>Gender</label>
+    <select name="gender" required>
+        <option value="">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <label>Profile Image</label>
+    <input type="file" name="profile_img">
+
+    <button type="submit" class="btn btn-primary">Add Student</button>
+    <a href="{% url 'view_students' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

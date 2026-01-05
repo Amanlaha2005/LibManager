@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        color: #bf360c;
+        margin-bottom: 25px;
+    }
+
+    form {
+        width: 420px;
+        margin: 40px auto;
+        padding: 35px;
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 25px;
+        border: none;
+        background: linear-gradient(135deg, #ff7043, #ff5722);
+        color: white;
+        font-size: 16px;
+    }
+
+    small {
+        color: #777;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+
+<h2>Administrator Registration</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Full Name</label>
+    <input type="text" name="name" required>
+
+    <label>ID Card Number (Username)</label>
+    <input type="text" name="id_card_number" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <label>Profile Image</label>
+    <input type="file" name="profile_img" accept="image/*">
+    <small>(Optional – default image will be used)</small>
+
+    <button type="submit">Register</button>
+</form>
+
+<p>
+    Already registered?
+    <a href="{% url 'AdminLogin' %}">Login here</a>
+</p>
+
+{% endblock %}

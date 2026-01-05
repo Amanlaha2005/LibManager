@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        color: #4a148c;
+        margin-bottom: 25px;
+    }
+
+    form {
+        width: 380px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #bbb;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 25px;
+        border: none;
+        background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+        color: white;
+        font-size: 16px;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+
+<h2>Administrator Login</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>ID Card Number</label>
+    <input type="text" name="id_card_number" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>
+    New administrator?
+    <a href="{% url 'admin_register' %}">Register here</a>
+</p>
+
+{% endblock %}

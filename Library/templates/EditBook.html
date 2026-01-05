@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Book</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Title</label>
+    <input type="text" name="title" value="{{ book.title }}" required>
+
+    <label>Author</label>
+    <input type="text" name="author" value="{{ book.author }}" required>
+
+    <label>ISBN</label>
+    <input type="text" name="isbn_no" value="{{ book.isbn_no }}" required>
+
+    <label>Quantity</label>
+    <input type="number" name="quantity" value="{{ book.quantity }}" required>
+
+    <label>Book Image</label>
+    <input type="file" name="book_img">
+
+    <button class="btn btn-primary">Update Book</button>
+    <a href="{% url 'view_book' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

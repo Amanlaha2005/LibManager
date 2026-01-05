@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Issued Book</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Book</label>
+    <select name="book">
+        {% for b in books %}
+        <option value="{{ b.id }}" {% if issue_book.book.id == b.id %}selected{% endif %}>
+            {{ b.title }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Student</label>
+    <select name="student">
+        {% for s in students %}
+        <option value="{{ s.id }}" {% if issue_book.student.id == s.id %}selected{% endif %}>
+            {{ s.name }} ({{ s.roll_no }})
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Fine Start After (Days)</label>
+    <input type="number" name="fine_start_after" value="{{ issue_book.fine_start_after }}">
+
+    <label>Fine Amount (per day)</label>
+    <input type="number" name="fine_amount" value="{{ issue_book.fine_amount }}">
+
+    <button class="btn btn-primary">Update</button>
+    <a href="{% url 'View_IssueBook' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

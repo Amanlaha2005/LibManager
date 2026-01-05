@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Profile</h2>
+
+<center>
+    {% if student.profile_img %}
+        <img src="{{ student.profile_img.url }}" class="profile-img">
+    {% else %}
+        <img src="/media/profile_img/default_student.png" class="profile-img">
+    {% endif %}
+</center>
+
+<table>
+<tr><th>Name</th><td>{{ student.name }}</td></tr>
+<tr><th>Roll No</th><td>{{ student.roll_no }}</td></tr>
+<tr><th>Department</th><td>{{ student.department }}</td></tr>
+<tr><th>Age</th><td>{{ student.age }}</td></tr>
+<tr><th>Gender</th><td>{{ student.gender }}</td></tr>
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Book</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Title</label>
+    <input type="text" name="title">
+
+    <label>Author</label>
+    <input type="text" name="author">
+
+    <label>ISBN</label>
+    <input type="text" name="isbn_no">
+
+    <label>Quantity</label>
+    <input type="number" name="quantity">
+
+    <label>Image</label>
+    <input type="file" name="book_img">
+
+    <button class="btn btn-primary">Add Book</button>
+</form>
+{% endblock %}

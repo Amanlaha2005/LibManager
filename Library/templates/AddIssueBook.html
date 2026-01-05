@@ -1,0 +1,28 @@
+{% include 'base.html' %}
+
+<h2>Issue Book</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <select name="book">
+        {% for book in books %}
+            <option value="{{ book.id }}">{{ book.title }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <select name="student">
+        {% for student in students %}
+            <option value="{{ student.id }}">{{ student.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="number" name="fine_start_after" placeholder="Fine start days"><br><br>
+    <input type="number" name="fine_amount" placeholder="Fine per day"><br><br>
+
+    <button>Issue Book</button>
+</form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Issued Books</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <select name="search">
+        <option value="">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Returned">Returned</option>
+    </select>
+    <button class="btn btn-primary">Filter</button>
+</form>
+
+<table>
+<tr>
+    <th>Book</th><th>Issue Date</th><th>Status</th><th>Fine</th>
+</tr>
+{% for i in issue_book %}
+<tr>
+    <td>{{ i.book }}</td>
+    <td>{{ i.issue_date }}</td>
+    <td>{{ i.is_returned|yesno:"Returned,Pending" }}</td>
+    <td>₹ {{ i.fine }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

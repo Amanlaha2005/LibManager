@@ -1,0 +1,41 @@
+{% include 'base.html' %}
+
+<h2>Students</h2>
+<a href="{% url 'AddStudent' %}">Add Student</a>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>Dept</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Picture</th>
+        <th>Action</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.roll_no }}</td>
+        <td>{{ student.department }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.gender }}</td>
+
+        <td>
+            {% if student.profile_img %}
+                <img src="{{ student.profile_img.url }}" width="60" height="60"
+                     style="border-radius: 50%; object-fit: cover;">
+            {% else %}
+                <img src="/media/profile_img/default_student.png" width="60" height="60">
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="{% url 'EditStudent' student.id %}">Edit</a> |
+            <a href="{% url 'DeleteStudent' student.id %}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
